@@ -15,18 +15,20 @@
 /*     int *nnum:  the number of data elements to swap                */
 /*   output :                                                         */
 /*                                                                    */
-/*     char* data: swapped  data array                                */
+/*     char* data: swappted  data array                               */
 /*--------------------------------------------------------------------*/
 
-#if defined IBM4
-  void byteswap
-         (char *data, int *nbyte, int *nnum) {
-#elif defined IBM8
-  void byteswap
-         (char *data, long long int *nbyte, long long int *nnum) {
-#else /* Default is LINUX */
+#ifdef LINUX
   void byteswap_
          (char *data, int *nbyte, int *nnum) {
+#endif
+#ifdef IBM4
+  void byteswap
+         (char *data, int *nbyte, int *nnum) {
+#endif
+#ifdef IBM8
+  void byteswap
+         (char *data, long long int *nbyte, long long int *nnum) {
 #endif
   int  i, j;
   char swap[256];
