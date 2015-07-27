@@ -44,6 +44,7 @@ case `hostid` in
 
 #  010afa01)           MACHINE_ID=wcoss ;; ### eddy
    0b0a0214)	       MACHINE_ID=wcoss ;; ### tide
+   b60a8408)           MACHINE_ID=theia ;; ### theia
 esac
 
 #typeset -Z3 TEST_NR
@@ -74,6 +75,18 @@ elif [ ${MACHINE_ID} = ccs ]; then
   fi
   cd $confdir
   cp conf_ccs conf_unittest
+elif [ ${MACHINE_ID} = theia ]; then
+  echo " Compile bacio lib...."
+  cd $libsrcdir
+  ./makebacio_ccs.sh
+  if [ -s $libdir/libbacio_4.a -a -s $libdir/libbacio_8.a ]; then
+    echo " Compile bacio lib.... finished"
+  else
+    echo " Compile bacio lib.... failed"
+    exit 8
+  fi
+  cd $confdir
+  cp conf_theia conf_unittest
 elif [ ${MACHINE_ID} = wcoss ]; then
   echo " Compile bacio lib...."
   cd $libsrcdir
