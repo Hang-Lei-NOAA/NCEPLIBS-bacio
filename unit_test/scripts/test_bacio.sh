@@ -1,5 +1,5 @@
 #!/bin/sh
- 
+#set -x 
 crtdir=`pwd` 
 libdir=${crtdir}/../../lib
 libsrcdir=${crtdir}/../../src
@@ -40,17 +40,17 @@ case `hostid` in
   b20a077e)           MACHINE_ID=jet ;; ### jet3
   b20a087e)           MACHINE_ID=jet ;; ### jet4
 
-  3ac0c803)           MACHINE_ID=wcoss ;; ### current
+#  3ac0c803)           MACHINE_ID=wcoss ;; ### current
 
-  010afa01)           MACHINE_ID=wcoss ;; ### eddy
-
+#  010afa01)           MACHINE_ID=wcoss ;; ### eddy
+   0b0a0214)	       MACHINE_ID=wcoss ;; ### tide
 esac
 
 #typeset -Z3 TEST_NR
 export TEST_NR=0
 
 echo " **************** compiling start *********************** "
-if [ ${MACHINE_ID} = zeus ]; then
+if [ ${MACHINE_ID} = zeus ] ; then
   echo " Compile bacio lib...."
   cd $libsrcdir
   ./makebacio_zeus.sh
