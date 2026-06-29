@@ -34,23 +34,25 @@ main()
         /* Swap a byte. Does nothing. */
         if ((ret = fast_byteswap(&byte_data, 1, 1)) != 1)
             return ERR;
-        
+
+#ifdef ENABLE_DEPRECATED_SUBS
         /* Swap a short. */
         if ((ret = fast_byteswap(&short_data, 2, 1)) != 1)
             return ERR;
         if (short_data != 10752) return ERR;
         /* printf("short_data = %4.4x\n", short_data); */
-        
+
         /* Swap an int. */
         if ((ret = fast_byteswap(&int_data, 4, 1)) != 1)
             return ERR;
         if (int_data != 704643072) return ERR;
         /* printf("int_data = %8.8x\n", int_data); */
-        
+
         /* Swap an int64. */
         if ((ret = fast_byteswap(&int64_data, 4, 1)) != 1)
             return ERR;
         if (int64_data != 704643072) return ERR;
+#endif /* ENABLE_DEPRECATED_SUBS */
 
         /* Swap a weird number and it won't work. */
         if ((ret = fast_byteswap(&short_data, 3, 1)) != 0)
